@@ -6,7 +6,7 @@ import io
 import spacy
 
 class Speech_Processing(object):
-  
+
     def __init__(self, audio):
         self.client = speech.SpeechClient()
         self.audio = audio
@@ -18,8 +18,9 @@ class Speech_Processing(object):
 
     def SpeechToText(self):
       response = self.client.recognize(request={"config": self.config, "audio": self.audio})
+      audioTranscript = ""
       for result in response.results:
-        print("Transcript: {}".format(result.alternatives[0].transcript))
-      return 0
+        audioTranscript += result.alternatives[0].transcript
+      return audioTranscript
 
     

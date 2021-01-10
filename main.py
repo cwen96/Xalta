@@ -23,13 +23,11 @@ def readAudio():
 
 def main():
   #contents = readFile()
-  #textProcessing = Text_Processing.Text_Processing(contents)
   audioContents = readAudio()
   audioProcessing = Speech_Processing.Speech_Processing(audioContents)
-  audioProcessing.SpeechToText()
-
-
-
+  output = audioProcessing.SpeechToText()
+  textProcessing = Text_Processing.Text_Processing(output)
+  print(textProcessing.getTopics())
 
 if __name__ == "__main__":
     main()
