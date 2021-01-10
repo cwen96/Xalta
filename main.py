@@ -13,7 +13,9 @@ def readFile():
 
 def main():
   contents = readFile()
-  print(contents)
+  textProcessing = Text_Processing.Text_Processing(contents)
+  print(textProcessing.text)
+
 
 
 if __name__ == "__main__":
