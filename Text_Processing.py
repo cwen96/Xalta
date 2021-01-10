@@ -12,7 +12,11 @@ class Text_Processing(object):
         doc = self.nlp(self.text)
         nouns = [chunk.text for chunk in doc.noun_chunks]
         return nouns
-
+    
+    def getSentences(self):
+        doc = self.nlp(self.text)
+        sentences = list(doc.sents)
+        return sentences
 
 
 

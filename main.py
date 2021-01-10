@@ -15,8 +15,10 @@ def main():
   contents = readFile()
   textProcessing = Text_Processing.Text_Processing(contents)
   nouns = textProcessing.getNouns()
-  print(textProcessing.text)
-  print(nouns)
+  sentences = textProcessing.getSentences()
+  #print(textProcessing.text)
+  #print(nouns)
+  #print(sentences)
 
 
 
