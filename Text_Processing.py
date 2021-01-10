@@ -24,13 +24,21 @@ class Text_Processing(object):
         freq = Counter(potentialTopics)
         del freq[" "]
         listOfTopics = self.checkTheTopFive(freq)
-        return listOfTopics
+        return listOfTopics.most_common(5)
     
     # Returns a list of sentences
     def getSentences(self):
         doc = self.nlp(self.text)
         sentences = list(doc.sents)
         return sentences
+    
+    def getRelevantSentences(self, topic):
+        relevantSentenceArray = []
+        for sentence in self.getSentences():
+            if topic in sentence.text and sentence.text not in relevantSentenceArray:
+                relevantSentenceArray.append(self.whitespaceRemover(sentence.text))
+        return relevantSentenceArray
+
     # Checks the top five and changes it if repetition is detected
     def checkTheTopFive(self, dictionary_var):
         delList = []
@@ -59,7 +67,7 @@ class Text_Processing(object):
         for key in delList:
             del dictionary_var[key]
         dictionary_var.update(newDic)
-        return dictionary_var.most_common(5)
+        return dictionary_var
 
  
         
