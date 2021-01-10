@@ -34,25 +34,31 @@ class Text_Processing(object):
 
     def checkTheTopFive(self, dictionary_var):
         delList = []
-        addList = []
-        sumList = []
+        newDic = {}
         for i in range(len(dictionary_var)):
             for j in range(len(dictionary_var)-1):
-                if j != i:
+                if i != j:
                     dupKeySum = 0
                     compare1 = list(dictionary_var.keys())[i]
                     compare2 = list(dictionary_var.keys())[j]
-                    if compare1.lower() == compare2.lower() and compare1 not in delList and compare2 not in delList:
-                        dupKeySum += dictionary_var[compare1]
-                        dupKeySum += dictionary_var[compare2]
-                        delList.append(compare1)
-                        delList.append(compare2)
-                        addList.append(compare1.lower())
-                        sumList.append(dupKeySum)
+                    if (compare1.lower() == compare2.lower()):
+                        if compare1 not in delList and compare2 not in delList:
+                            dupKeySum += dictionary_var[compare1]
+                            dupKeySum += dictionary_var[compare2]
+                            delList.append(compare1)
+                            delList.append(compare2)
+                            newDic[compare1.lower()] = dupKeySum
+                        elif compare1 in delList and compare2 not in delList:
+                            dupKeySum += dictionary_var[compare2]
+                            delList.append(compare2)
+                            newDic[compare1.lower()] += dupKeySum
+                        elif compare1 not in delList and compare2 in delList:
+                            dupKeySum += dictionary_var[compare1]
+                            delList.append(compare1)
+                            newDic[compare1.lower()] += dupKeySum
         for key in delList:
             del dictionary_var[key]
-        for i in range(len(addList)):
-            dictionary_var += {addList[i]:sumList[i]}
+        dictionary_var.update(newDic)
         return dictionary_var.most_common(5)
 
     '''
