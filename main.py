@@ -28,9 +28,14 @@ def main():
   #output = audioProcessing.SpeechToText()
   #textProcessing = Text_Processing.Text_Processing(output)
   #print(textProcessing.getTopics())
-  contents = readFile()
-  textProcessing = Text_Processing.Text_Processing(contents)
-  print(textProcessing.getRelevantSentences("Mewanee"))
+  audioContents = readAudio()
+  audioProcessing = Speech_Processing.Speech_Processing(audioContents)
+  output = audioProcessing.SpeechToText()
+  textProcessing = Text_Processing.Text_Processing(output)
+  print(textProcessing.getTopics())
+
+  for i in range(len(textProcessing.getTopics())):
+    print(textProcessing.getRelevantSentences(textProcessing.getTopics()[i][0])) 
   #audioContents = readAudio()
   #audioProcessing = Speech_Processing.Speech_Processing(audioContents)
   #audioProcessing.SpeechToText()
