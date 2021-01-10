@@ -6,7 +6,7 @@ import Speech_Processing
 from google.cloud import speech
 import io
 import os
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'C:\\Users\\Chris\\Desktop\\GitHub\\nwHacks2021\\gold-rope-301305-872a7baadfbc.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '//Users//bachha//Desktop//Github//nwHacks2021//gold-rope-301305-872a7baadfbc.json'
 
 def readFile():
     file = askopenfile(mode = 'rb', filetypes = [("Text Files", "*.txt")])
@@ -23,11 +23,21 @@ def readAudio():
 
 def main():
   #contents = readFile()
-  audioContents = readAudio()
-  audioProcessing = Speech_Processing.Speech_Processing(audioContents)
-  output = audioProcessing.SpeechToText()
-  textProcessing = Text_Processing.Text_Processing(output)
-  print(textProcessing.getTopics())
+  #audioContents = readAudio()
+  #audioProcessing = Speech_Processing.Speech_Processing(audioContents)
+  #output = audioProcessing.SpeechToText()
+  #textProcessing = Text_Processing.Text_Processing(output)
+  #print(textProcessing.getTopics())
+  contents = readFile()
+  textProcessing = Text_Processing.Text_Processing(contents)
+  topics = textProcessing.getTopics()
+  print(topics)
+  #audioContents = readAudio()
+  #audioProcessing = Speech_Processing.Speech_Processing(audioContents)
+  #audioProcessing.SpeechToText()
+
+
+
 
 if __name__ == "__main__":
     main()
