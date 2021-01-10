@@ -31,7 +31,7 @@ class Text_Processing(object):
         doc = self.nlp(self.text)
         sentences = list(doc.sents)
         return sentences
-
+    # Checks the top five and changes it if repetition is detected
     def checkTheTopFive(self, dictionary_var):
         delList = []
         addList = []
@@ -43,8 +43,7 @@ class Text_Processing(object):
                     compare1 = list(dictionary_var.keys())[i]
                     compare2 = list(dictionary_var.keys())[j]
                     if compare1.lower() == compare2.lower() and compare1 not in delList and compare2 not in delList:
-                        dupKeySum += dictionary_var[compare1]
-                        dupKeySum += dictionary_var[compare2]
+                        dupKeySum = dictionary_var[compare1] + dictionary_var[compare2]
                         delList.append(compare1)
                         delList.append(compare2)
                         addList.append(compare1.lower())
@@ -55,71 +54,7 @@ class Text_Processing(object):
             dictionary_var += {addList[i]:sumList[i]}
         return dictionary_var.most_common(5)
 
-    '''
-    checker = True
-    local_checker = True
-    key_array = []
-    while(checker):
-        key_array = dictionary_var.most_common(5)
-        print(key_array)
-        for i in range(len(key_array)-1):
-            key1 = key_array[i][0]
-            key2 = key_array[i+1][0]
-            
-            local_checker = self.areKeysSame(key1, key2)
-            
-            if local_checker:
-                key_array = self.changeValuesInArray(key_array, key1, key2, i, dictionary_var)
-                i = 0
-                    
-        checker = False
-    return key_array
-    '''
-    '''
-    def changeValuesInArray(self, array, key1, key2, index, dicto):
-        key1_value = array[index][1]
-        key2_value = array[index+1][1]
-
-        keyFinal = array[index][1] + array[index+1][1]
-
-        array.pop(index)
-        array.pop(index+1)
-        dicto.pop(index)
-        dicto.pop(index+1)
-
-        array.append((key1, keyFinal))
-        dicto.append((key1, keyFinal))
-
-        print(dicto.most_common(5))
-        return dicto.most_common(5)
-    
-    # Working
-    def areKeysSame(self, key1, key2):
-        if key1.lower() == key2.lower():
-            return True
-        elif key1.lower() != key2.lower():
-            return False
-    '''
-    # def checkTopFive(self, dict):
-    #     checker = True
-    #     key_array = []
-    #     index_storing = []
-    #     boolean_storing = []
-    #     while(checker):
-    #         checker = False
-    #         key_array = dict.most_common(5)
-    #         for i in range(len(key_array)-1):
-    #             key = key_array[i][0].lower()
-    #             key2 = key_array[i+1][0].lower()
-    #             checker = self.areKeysSame(key, i, key2, i+1, index_storing, boolean_storing)
-
-    #         if checker == True:
-    #             keyFinal = key_array[i][1] + key_array[i+1][1]
-    #             key_array.pop(key_array.index((key_array[i][0], key_array[i][1])))
-    #             key_array.pop(key_array.index((key_array[i+1][0], key_array[i+1][1])))
-    #             key_array.append((key_array[i][0], keyFinal))
-                
-    #     return key_array
+ 
         
             
     
