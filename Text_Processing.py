@@ -34,6 +34,8 @@ class Text_Processing(object):
 
     def checkTheTopFive(self, dictionary_var):
         delList = []
+        addList = []
+        sumList = []
         for i in range(len(dictionary_var)):
             for j in range(len(dictionary_var)-1):
                 if j != i:
@@ -45,9 +47,12 @@ class Text_Processing(object):
                         dupKeySum += dictionary_var[compare2]
                         delList.append(compare1)
                         delList.append(compare2)
-                        dictionary_var += {compare1.lower():dupKeySum}
-        for value in delList:
-            del dictionary_var[value]
+                        addList.append(compare1.lower())
+                        sumList.append(dupKeySum)
+        for key in delList:
+            del dictionary_var[key]
+        for i in range(len(addList)):
+            dictionary_var += {addList[i]:sumList[i]}
         return dictionary_var.most_common(5)
 
     '''
