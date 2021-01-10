@@ -22,12 +22,7 @@ def readAudio():
     return audio
 
 def main():
-  #contents = readFile()
-  #audioContents = readAudio()
-  #audioProcessing = Speech_Processing.Speech_Processing(audioContents)
-  #output = audioProcessing.SpeechToText()
-  #textProcessing = Text_Processing.Text_Processing(output)
-  #print(textProcessing.getTopics())
+  
   audioContents = readAudio()
   audioProcessing = Speech_Processing.Speech_Processing(audioContents)
   output = audioProcessing.SpeechToText()
@@ -36,9 +31,7 @@ def main():
 
   for i in range(len(textProcessing.getTopics())):
     print(textProcessing.getRelevantSentences(textProcessing.getTopics()[i][0])) 
-  #audioContents = readAudio()
-  #audioProcessing = Speech_Processing.Speech_Processing(audioContents)
-  #audioProcessing.SpeechToText()
+  
 
 
 
