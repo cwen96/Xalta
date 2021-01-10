@@ -6,7 +6,3 @@ class Speech_Processing(object):
     
     def __init__(self, audio):
         self.audio = audio
-
-
-
-

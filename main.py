@@ -14,7 +14,9 @@ def readFile():
 def main():
   contents = readFile()
   textProcessing = Text_Processing.Text_Processing(contents)
+  nouns = textProcessing.getNouns()
   print(textProcessing.text)
+  print(nouns)
 
 
 
