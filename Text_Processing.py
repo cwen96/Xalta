@@ -33,25 +33,45 @@ class Text_Processing(object):
         return sentences
 
     def checkTheTopFive(self, dictionary_var):
-        checker = True
-        local_checker = True
-        key_array = []
-        while(checker):
-            key_array = dictionary_var.most_common(5)
-            print(key_array)
-            for i in range(len(key_array)-1):
-                key1 = key_array[i][0]
-                key2 = key_array[i+1][0]
-                
-                local_checker = self.areKeysSame(key1, key2)
-                
-                if local_checker:
-                    key_array = self.changeValuesInArray(key_array, key1, key2, i, dictionary_var)
-                    i = 0
-                     
-            checker = False
-        return key_array
+        delList = []
+        for i in range(len(dictionary_var)):
+            for j in range(len(dictionary_var)-1):
+                if j != i:
+                    dupKeySum = 0
+                    compare1 = list(dictionary_var.keys())[i]
+                    compare2 = list(dictionary_var.keys())[j]
+                    if compare1.lower() == compare2.lower() and compare1 not in delList and compare2 not in delList:
+                        dupKeySum += dictionary_var[compare1]
+                        dupKeySum += dictionary_var[compare2]
+                        delList.append(compare1)
+                        delList.append(compare2)
+                        dictionary_var += {compare1.lower():dupKeySum}
+        for value in delList:
+            del dictionary_var[value]
+        return dictionary_var.most_common(5)
 
+
+    '''
+    checker = True
+    local_checker = True
+    key_array = []
+    while(checker):
+        key_array = dictionary_var.most_common(5)
+        print(key_array)
+        for i in range(len(key_array)-1):
+            key1 = key_array[i][0]
+            key2 = key_array[i+1][0]
+            
+            local_checker = self.areKeysSame(key1, key2)
+            
+            if local_checker:
+                key_array = self.changeValuesInArray(key_array, key1, key2, i, dictionary_var)
+                i = 0
+                    
+        checker = False
+    return key_array
+    '''
+    '''
     def changeValuesInArray(self, array, key1, key2, index, dicto):
         key1_value = array[index][1]
         key2_value = array[index+1][1]
@@ -69,12 +89,13 @@ class Text_Processing(object):
         print(dicto.most_common(5))
         return dicto.most_common(5)
     
+    # Working
     def areKeysSame(self, key1, key2):
         if key1.lower() == key2.lower():
             return True
         elif key1.lower() != key2.lower():
             return False
-
+    '''
     # def checkTopFive(self, dict):
     #     checker = True
     #     key_array = []
