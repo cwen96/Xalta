@@ -50,7 +50,6 @@ class Text_Processing(object):
             del dictionary_var[value]
         return dictionary_var.most_common(5)
 
-
     '''
     checker = True
     local_checker = True
